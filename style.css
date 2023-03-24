@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+}
+
+#element {
+  margin: 30px;
+  border-top: 5px solid red;
+  border-left: 10px solid green;
+  width: 50px;
+  height: 80px;
+  background-color: #ccc;
+}
+
+table {
+  margin-top: 16px;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: solid 1px #ccc;
+  padding: 4px;
+}
