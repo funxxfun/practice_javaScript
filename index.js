@@ -16,14 +16,53 @@ function addIncompleteList() {
   incompleteListItem.classList.add('incomplete-list-item');
   incompleteListItem.innerText = addTasks.value;
   incompleteListGroup.appendChild(incompleteListItem);
+
+  // 左クリックで削除線
+  incompleteListItem.addEventListener('click', function() {
+    incompleteListItem.classList.toggle('text-decoration-line-through');
+  });
   addTasks.value = "";
+
+
+  // liタグの中に完了ボタンが生成される
+  const completeButton = document.createElement('button');
+  completeButton.innerText = "完了";
+  incompleteListItem.appendChild(completeButton);
+  completeButton.setAttribute('type', 'button');
+  completeButton.setAttribute('class', 'btn btn-success m-1');
+
+
+  //  完了ボタンを押したら完了エリアにタスクが移動する
+completeButton.addEventListener('click', function(event){
+  event.preventDefault();
+  moveCompleteList();
+});
+
+// 完了ボタンを押した時に実行される関数
+function moveCompleteList() {
+    const completeTarget = completeButton.parentNode;
+    console.log(completeTarget);
+    // 未完了エリアから削除される
+    // completeListGroup.removeChild(completeTarget);
+    // 完了エリアにliダグが生成される
+    const completeListItem = document.createElement('li');
+    completeListItem.classList.add('complete-list-item');
+    completeListGroup.appendChild(completeListItem);
+
+    // 完了ボタンを押したinnerTextのvalueを取得するに変更
+    completeListItem.innerText = incompleteListItem.value;
+    console.log(completeListItem);
+    console.log(incompleteListItem.value);
+  };
 
   // liタグの中に削除ボタンを生成する
   const deleteButton = document.createElement('button');
   deleteButton.innerText = "削除する";
   incompleteListItem.appendChild(deleteButton);
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.setAttribute('class', 'btn btn btn-warning');
 
-// 削除ボタンを押したら削除イベントが発動
+  // 削除ボタンを押したら削除イベントが発動
   const deleteTasks = deleteButton.addEventListener('click', function(event){
     event.preventDefault();
     alert('削除しますか？');
@@ -31,19 +70,15 @@ function addIncompleteList() {
     incompleteListGroup.removeChild(deleteTarget);
   });
 
-   // liタグの中に完了ボタンが生成される
-   const completeButton = document.createElement('button');
-   completeButton.innerText = "完了";
-   incompleteListItem.appendChild(completeButton);
 
-  //  完了ボタンを押したら完了エリアにタスクが移動する
-  const completeTask = completeButton.addEventListener('click', function(){
-    const completeTarget = completeButton.parentNode;
-    console.log(completeTarget);
-  })
+
 
 };
 
+
+
+  
+  
 
 
 
