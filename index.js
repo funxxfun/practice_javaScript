@@ -16,12 +16,12 @@ function addIncompleteList() {
   incompleteListItem.classList.add('incomplete-list-item');
   incompleteListItem.innerText = addTasks.value;
   incompleteListGroup.appendChild(incompleteListItem);
+  addTasks.value = "";
 
   // 左クリックで削除線
-  incompleteListItem.addEventListener('click', function() {
-    incompleteListItem.classList.toggle('text-decoration-line-through');
-  });
-  addTasks.value = "";
+  // incompleteListItem.addEventListener('click', function() {
+  //   incompleteListItem.classList.toggle('text-decoration-line-through');
+  // });
 
 
   // liタグの中に完了ボタンが生成される
@@ -41,9 +41,8 @@ completeButton.addEventListener('click', function(event){
 // 完了ボタンを押した時に実行される関数
 function moveCompleteList() {
     const completeTarget = completeButton.parentNode;
-    console.log(completeTarget);
     // 未完了エリアから削除される
-    // completeListGroup.removeChild(completeTarget);
+    incompleteListGroup.removeChild(completeTarget);
     // 完了エリアにliダグが生成される
     const completeListItem = document.createElement('li');
     completeListItem.classList.add('complete-list-item');
@@ -51,8 +50,10 @@ function moveCompleteList() {
 
     // 完了ボタンを押したinnerTextのvalueを取得するに変更
     completeListItem.innerText = incompleteListItem.value;
-    console.log(completeListItem);
-    console.log(incompleteListItem.value);
+
+    // console.log(incompleteListItem);
+    console.log(incompleteListItem.innerHTML);
+
   };
 
   // liタグの中に削除ボタンを生成する
@@ -70,42 +71,9 @@ function moveCompleteList() {
     incompleteListGroup.removeChild(deleteTarget);
   });
 
-
-
-
 };
 
 
 
-  
-  
 
-
-
-
-
-// function add() {
-//   let todoText = input.value;
-//   if(todoText.length > 0) {
-//   const li = document.createElement("li");
-//   li.innerText = todoText;
-//   li.classList.add("list-group-item");
-
-//   // 右クリックで削除のイベント
-//   li.addEventListener("contextmenu", function(event) {
-//     li.remove();
-//   });
-
-//   // 左クリックで取り消し線
-//   li.addEventListener("click", function(){
-//     li.classList.toggle("text-decoration-line-through")
-
-//   })
-
-
-
-//   ul.appendChild(li);
-//   input.value = "";
-//   }
-// }
 
